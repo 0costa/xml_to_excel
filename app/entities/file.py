@@ -1,7 +1,7 @@
 from pathlib import Path
 from zipfile import ZipFile
 import os, shutil
-from .fileXml import Xml
+from ..entities.fileXml import Xml
 
 class File:
     def __init__(self, filepath:Path):

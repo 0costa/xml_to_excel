@@ -1,13 +1,10 @@
-from PySide6.QtWidgets import QMainWindow, QApplication
+from PySide6.QtWidgets import QMainWindow
 from PySide6.QtWidgets import QWidget, QCheckBox, QLabel, QPushButton, QFileDialog, QMessageBox
 from PySide6.QtWidgets import QVBoxLayout
 from PySide6.QtGui import Qt
 from pathlib import Path
 from .entities.file import File
 from .entities.sheets import Sheets
-
-
-import sys, shutil
 
 class UserInterface(QWidget):
     def __init__(self) -> QWidget:
@@ -76,11 +73,8 @@ class UserInterface(QWidget):
         data = self.__selectedFile.data
         Sheets(data)
         QMessageBox(QMessageBox.Information, 'Arquivo salvo', 'Arquivo salvo na aréa de trabalho!').exec()
-        
-            
-    
 
-class Main(QMainWindow):
+class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         
@@ -89,10 +83,3 @@ class Main(QMainWindow):
         #window config
         self.setWindowTitle('Conversor de xml para excel')  
         self.setCentralWidget(content)
-
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = Main()
-    window.show()
-    sys.exit(app.exec())

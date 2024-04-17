@@ -3,8 +3,9 @@ from PySide6.QtWidgets import QWidget, QCheckBox, QLabel, QPushButton, QFileDial
 from PySide6.QtWidgets import QVBoxLayout
 from PySide6.QtGui import Qt
 from pathlib import Path
-from entities.file import File
-from entities.sheets import Sheets
+from .entities.file import File
+from .entities.sheets import Sheets
+
 
 import sys, shutil
 

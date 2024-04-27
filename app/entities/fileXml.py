@@ -4,6 +4,10 @@ class Xml:
     def __init__(self, file) -> None:
         self.__tree = ET.parse(file)
         self.__document: dict = {
+            'id': '',
+            'rede': '',
+            'id': '',
+            'rede': '',
             'loja': '',
             'cnpjLoja': '',
             'numNfe': '',
@@ -34,7 +38,24 @@ class Xml:
                 continue
              
             self.__document.update(i)
+        
+        idNfe = {'id': 'L'+str(self.__document['loja'])+\
+                        'N'+str(self.__document['numNfe'])+\
+                        'S'+str(infonfe.find(uri+'ide').find(uri+'serie').text)+\
+                        'Q'+str(self.__document['itens'])
+                }
+        self.__document.update(idNfe)
 
+        rede = 'desconsiderar'
+
+        if self.__document['loja'] and  int(self.__document['loja']) in range(1, 201):
+            rede = 'Oscar'
+        if self.__document['loja'] and  int(self.__document['loja']) in range(200, 301):
+            rede = 'Carioca'
+        if self.__document['loja'] and  int(self.__document['loja']) in range(300, 501):
+            rede = 'Paqueta'
+
+        self.__document.update({'rede': rede})
     def __getDadosNfe(self, uri, el):
         try:
             numeroNfe: int = int(el.find(uri+'nNF').text)
